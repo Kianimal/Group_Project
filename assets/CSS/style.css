@@ -1,12 +1,15 @@
  #wrapper {
      height: 100%;
+     background-color: white;
  }
 
  nav {
-     background-color: #AA2629;
+     background-color: white;
      height: 8vw;
      position: relative;
      top: 0px;
+     border-bottom: 1px solid black;
+     border-top: none;
  }
 
  #headerLogo {
@@ -14,8 +17,27 @@
      margin-left: auto;
      margin-right: auto;
      display: block;
+     position: relative;
+     top: -11px;
+     z-index: 10;
  }
 
+ #landingPage {
+     margin: 10px;
+ }
+
+ .card {
+    width: fit-content;
+    display: inline-block;
+}
+
+#main-container {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    min-height: 300px;
+    /* background-color: #ffffff; */
+}
  /* red: #E34B43 
     blue: #0F4E9E*/
 
