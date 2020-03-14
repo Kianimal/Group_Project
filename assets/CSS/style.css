@@ -25,14 +25,14 @@ form{
     position: absolute;
     width: 60px;
     height: 60px;
-    left: 75%;
+    left: 80%;
     top: 50%;
     padding: 5px;
     transform: translate(-50%,-50%);
     border-radius: 50px;
     border: 4px solid #fff;
     box-sizing: border-box;
-    background: #fff;`
+    background: #fff;
     transition: 1.5s;
 }
  
