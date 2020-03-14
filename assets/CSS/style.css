@@ -1,0 +1,20 @@
+ #wrapper {
+     height: 100%;
+ }
+
+ nav {
+     background-color: #AA2629;
+     height: 8vw;
+     position: relative;
+     top: 0px;
+ }
+
+ #headerLogo {
+     width: 12%;
+     margin-left: auto;
+     margin-right: auto;
+     display: block;
+ }
+
+ /* red: #E34B43 
+    blue: #0F4E9E*/
