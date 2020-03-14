@@ -75,3 +75,15 @@ form:hover input{
 
 }
 /* end of css for search bar */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: .1em;
+}
+
+h1 {
+    font-size: 2.6em;
+}
+
+p, div, a, table, span, input {
+    font-family: 'Roboto', sans-serif;
+}
