@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Group Project</title>
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/CSS/style.css">
     
 </head>
-<body id="wrapper">
+<body>
 
     <script
         src="https://code.jquery.com/jquery-3.4.1.js"
@@ -20,35 +21,74 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 
     <nav class="navbar navbar-brand">
+        <a class="navbar-brand" href="https://kianimal.github.io/Group_Project/">
+            <img src="assets/images/shield.png" alt="" id="headerLogo">
+          </a>
         <form action="">
             <input type="search" placeholder="Search for your favorite super hero..."id="searchBar">
             <i class= "fa fa-search"></i>
         </form>
-        <a class="navbar-brand" href="https://kianimal.github.io/Group_Project/">
-          <img src="assets/images/shield.png" alt="" id="headerLogo">
-        </a>
     </nav>
 
-    <div class="container" id="landingPage">
+    <div class="container" id="landingPage wrapper">
         <div class="row">
-            <div class="col-md-12" id="main-container">
-                <img src="assets/images/test1.jpeg" class="card">
-                <img src="assets/images/test1.jpeg" class="card">
-                <img src="assets/images/test1.jpeg" class="card">
-                <img src="assets/images/test1.jpeg" class="card">
-                <img src="assets/images/test1.jpeg" class="card">
-                <img src="assets/images/test1.jpeg" class="card">
-                <img src="assets/images/test1.jpeg" class="card">
-                <img src="assets/images/test1.jpeg" class="card">
-                <img src="assets/images/test1.jpeg" class="card">
-                <img src="assets/images/test1.jpeg" class="card">
+            <!-- Left side container -->
+            <div class="col-md-2">
+                This is our left-hand side area
+            </div>
+            <div class="col-md-10">
+                <div class="container">
+                    <div class="row">
+                        <!-- center about container -->
+                        <div class="col-lg-12 heading">
+                            <h1>A comprehensive guide to the Marvel universe</h1>
+                            <h1 class="muted">
+                                movies | comics | characters - all in one place</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Your Avengers</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- center container with character cards, about, links to their full profile -->
+                        <div class="col-md-12" id="main-container">
+                            <div class="card">
+                                <img src="assets/images/captAmer.jpeg" class="card-img-top">
+                                <div class="card-body">
+                                    <h3 class="card-title">Captain America</h3>
+                                    <p class="card-text">Recipient of the Super-Soldier serum, World War II hero Steve Rogers fights for American ideals as one of the world’s mightiest heroes and the leader of the Avengers.</p>
+                                    <a href="#" class="btn btn-block">View profile</a>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <img src="assets/images/ironman.jpeg" class="card-img-top">
+                                <div class="card-body">
+                                    <h3 class="card-title">Iron Man</h3>
+                                    <p class="card-text">Genius. Billionaire. Playboy. Philanthropist. Tony Stark's confidence is only matched by his high-flying abilities as the hero called Iron Man.</p>
+                                    <a href="#" class="btn btn-block">View profile</a>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <img src="assets/images/hulk.jpeg" class="card-img-top">
+                                <div class="card-body">
+                                    <h3 class="card-title">Incredible Hulk</h3>
+                                    <p class="card-text">
+                                        Dr. Bruce Banner lives a life caught between the soft-spoken scientist he’s always been and the uncontrollable green monster powered by his rage.</p>
+                                    <a href="#" class="btn btn-block">View profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <h1>This is a test!</h1>
-    <p>This is a test to see if these two fonts look alright and they look.. fine 4 now</p>
-    <h3>what about now</h3> <span>okay still fine</span>
+
     
     <script src="assets/javascript/app.js"></script>
 
