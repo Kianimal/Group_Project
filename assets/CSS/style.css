@@ -1,15 +1,20 @@
  #wrapper {
      height: 100%;
+     width: 100%;
      background-color: white;
  }
 
  nav {
-     background-color: white;
+     background-color: #AA2629;
      height: 8vw;
      position: relative;
-     top: 0px;
-     border-bottom: 1px solid black;
+     top: 0vw;
      border-top: none;
+     /* width: 100%; */
+ }
+
+ nav.navbar.navbar-brand {
+    margin: 0px;
  }
 
  #headerLogo {
@@ -18,27 +23,69 @@
      margin-right: auto;
      display: block;
      position: relative;
-     top: -11px;
-     z-index: 10;
+     /* top: -1vw; */
+     /* z-index: 10; */
  }
 
- #landingPage {
-     margin: 10px;
+ /* .heading {
+     overflow: auto;
+     max-height: 20vw;
+ } */
+ 
+ .muted {
+     opacity: 60%;
+ }
+
+ h1.muted {
+     font-size: 2.7vw;
+     margin-top: 0px;
+ }
+
+ img:hover {
+     opacity: 90%;
+ }
+
+ .btn {
+     background-color: #AA2629;
+     color: white;  
+ }
+
+ .btn:hover {
+     background-color: #0F4E9E;
+     color: white;
  }
 
  .card {
-    width: fit-content;
+    height: auto;
+    width: 18vw;
+    /* height: ; */
     display: inline-block;
+}
+
+.card-title {
+    font-size: 2.2vw;
+}
+
+.card-body{
+    word-wrap: break-word;
+}
+
+.card-text {
+    word-wrap: normal;
+    white-space: normal;
+    height: 10vw;
+    overflow-y: auto;
 }
 
 #main-container {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    min-height: 300px;
-    /* background-color: #ffffff; */
+    min-height: 30vw;
+    margin-right: 0px;
+
 }
- /* red: #E34B43 
+ /* red: #AA2629 
     blue: #0F4E9E*/
 
 /*css for search bar*/
