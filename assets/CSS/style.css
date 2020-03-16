@@ -1,16 +1,52 @@
- #wrapper {
-     height: 100%;
-     width: 100%;
-     background-color: white;
+* {
+    box-sizing: border-box;
+}
+
+#landingPage {
+    margin-bottom: 1vw;
+}
+
+#recentSearches {
+    background-color: #AA2629;
+    color: white;
+    border-radius: 0.5vw;
+    display: flex;
+    flex-direction: column;
+    padding: 1vw;
+    position: relative;
+}   
+
+#recentSearches #clearHist {
+    position: absolute;
+    bottom: 1vw;
+    width: 90%;
+    background-color: white;
+    color: #AA2629;
+}
+
+#recentSearches #clearHist:hover {
+    background-color: #0F4E9E;
+    color: white;
+}
+
+#recentSearches h4 {
+    font-family: 'Roboto', sans-serif;
+}
+
+#wrapper {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    box-sizing: border-box;
  }
 
- nav {
-     background-color: #AA2629;
-     height: 8vw;
-     position: relative;
-     top: 0vw;
-     border-top: none;
-     /* width: 100%; */
+
+nav {
+    background-color: #AA2629;
+    height: 8vw;
+    position: relative;
+    top: 0vw;
+    border-top: none;
  }
 
  nav.navbar.navbar-brand {
@@ -23,18 +59,26 @@
      margin-right: auto;
      display: block;
      position: relative;
-     /* top: -1vw; */
-     /* z-index: 10; */
+     z-index: 10;
  }
-
- /* .heading {
-     overflow: auto;
-     max-height: 20vw;
- } */
  
  .muted {
      opacity: 60%;
  }
+
+/* img#footer {
+    width: 10%;
+    z-index: -10;
+    /* position: sticky; */
+    /* bottom: -10vw; */
+    /* margin-left: 45%;
+    margin-right: auto; */
+
+/* } */ 
+
+img#footer:hover {
+    opacity: 100%;
+}
 
  h1.muted {
      font-size: 2.7vw;
@@ -42,7 +86,7 @@
  }
 
  img:hover {
-     opacity: 90%;
+     opacity: 80%;
  }
 
  .btn {
@@ -58,7 +102,6 @@
  .card {
     height: auto;
     width: 18vw;
-    /* height: ; */
     display: inline-block;
 }
 
@@ -85,8 +128,6 @@
     margin-right: 0px;
 
 }
- /* red: #AA2629 
-    blue: #0F4E9E*/
 
 /*css for search bar*/
 form{
