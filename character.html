@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel-verse</title>
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/CSS/style.css">
+    
+</head>
+<body>
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+
+    <nav class="navbar navbar-brand">
+        <a class="navbar-brand" href="https://kianimal.github.io/Group_Project/">
+            <img src="assets/images/shield.png" alt="" id="headerLogo">
+          </a>
+        <form action="">
+            <input type="search" placeholder="Search for your favorite super hero..."id="searchBar">
+            <i class= "fa fa-search"></i>
+        </form>
+    </nav>
+
+<div class="container" id="wrapper">
+    <div class="container-fluid" id="characterBio">
+        <div class="row">
+            <div class="col-md-12">
+                <img src="assets/images/ironman.jpeg" class="charImage"> 
+                <span id="bio">
+                    <h4>About:</h4>
+                    <p>Wounded, captured and forced to build a weapon by his enemies, billionaire industrialist Tony Stark instead created an advanced suit of armor to save his life and escape captivity. Now with a new outlook on life, Tony uses his money and intelligence to make the world a safer, better place as Iron Man.</p>
+                </span>
+                <h4>Movies featured in:</h4>
+                <span id="moviePosters" class="main-container">
+                    <!-- cards with their release dates -->
+                    <img src="assets/images/ironman1.jpg">
+                    <img src="assets/images/ironman2.jpg">
+                    <img src="assets/images/ironman3.jpg">
+                    <img src="assets/images/ironman4.jpg">
+                    <img src="assets/images/ironman5.jpg">
+                </span>
+                <span id="movies">
+                    <p>Iron Man, Iron Man 2, Iron Man 3, The Invincible Iron Man, Iron Man: Rise of Technovore</p>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <span id="comics">
+                    <h4>Appearances in Comics:</h4>
+                </span>
+            </div>
+
+            <div class="col-md-4">
+                <span id="stories">
+                    <h4>Iron Man Stories:</h4>
+                </span>
+            </div>
+
+            <div class="col-md-4">
+                <span id="sites">
+                    <h4>More Sites:</h4>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="assets/javascript/app.js"></script>
+
+</body>
+</html>

@@ -2,6 +2,19 @@
     box-sizing: border-box;
 }
 
+.charImage {
+    width: 30vw;
+    min-width: 150px;
+    height: auto;
+    float: right;
+    margin: 0px 20px 10px;    
+}
+
+#moviePosters img {
+    height: 250px;
+    margin-right: 10px;
+}
+
 #landingPage {
     margin-bottom: 1vw;
 }
@@ -12,11 +25,22 @@
     border-radius: 0.5vw;
     display: flex;
     flex-direction: column;
-    padding: 1vw;
+    /* padding: 1vw; */
     position: relative;
-}   
+    margin-top: 0px ;
+} 
+
+#bio p, #movies p, #comics p {
+    margin-left: 30px;
+    text-align: justify;
+}
+/* 
+#bio p {
+    width: 50%;
+} */
 
 #recentSearches #clearHist {
+    /* margin-top: 0px; */
     position: absolute;
     bottom: 1vw;
     width: 90%;
@@ -30,7 +54,13 @@
 }
 
 #recentSearches h4 {
+    padding-top: 0.5vw;
     font-family: 'Roboto', sans-serif;
+    margin-bottom: 30px;
+}
+
+#recentSearches.col-md-2 {
+    margin-top: 2vw;
 }
 
 #wrapper {
@@ -66,6 +96,7 @@ nav {
      opacity: 60%;
  }
 
+
 /* img#footer {
     width: 10%;
     z-index: -10;
@@ -81,7 +112,7 @@ img#footer:hover {
 }
 
  h1.muted {
-     font-size: 2.7vw;
+     font-size: 3.6vw;
      margin-top: 0px;
  }
 
@@ -92,6 +123,8 @@ img#footer:hover {
  .btn {
      background-color: #AA2629;
      color: white;  
+     margin-left: auto;
+     margin-right: auto;
  }
 
  .btn:hover {
@@ -101,12 +134,13 @@ img#footer:hover {
 
  .card {
     height: auto;
-    width: 18vw;
+    width: 20vw;
+    min-width: 200px;
     display: inline-block;
 }
 
 .card-title {
-    font-size: 2.2vw;
+    font-size: 1.5rem;
 }
 
 .card-body{
@@ -120,13 +154,17 @@ img#footer:hover {
     overflow-y: auto;
 }
 
-#main-container {
+#moviePosters.main-container {
+    display: flex;
+    height: 265px;
+}
+
+.main-container {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    min-height: 30vw;
+    /* min-height: 30vw; */
     margin-right: 0px;
-
 }
 
 /*css for search bar*/
@@ -191,7 +229,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 2.6em;
+    font-size: 3.8vw;
 }
 
 p, div, a, table, span, input {
