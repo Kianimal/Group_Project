@@ -30,17 +30,16 @@
         </form>
     </nav>
 
-    <div class="container" id="landingPage wrapper">
+<div class="container-fluid" id="wrapper">
+
+    <div class="container-fluid" id="landingPage">
         <div class="row">
-            <!-- Left side container -->
-            <div class="col-md-2">
-                This is our left-hand side area
-            </div>
+
             <div class="col-md-10">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row">
                         <!-- center about container -->
-                        <div class="col-lg-12 heading">
+                        <div class="col-md-12 heading">
                             <h1>A comprehensive guide to the Marvel universe</h1>
                             <h1 class="muted">
                                 movies | comics | characters - all in one place</h1>
@@ -53,10 +52,10 @@
                     </div>
                     <div class="row">
                         <!-- center container with character cards, about, links to their full profile -->
-                        <div class="col-md-12" id="main-container">
+                        <div class="col-md-12 main-container">
                             <div class="card">
                                 <img src="assets/images/captAmer.jpeg" class="card-img-top">
-                                <div class="card-body">
+                                <div class="card-body sliding">
                                     <h3 class="card-title">Captain America</h3>
                                     <p class="card-text">Recipient of the Super-Soldier serum, World War II hero Steve Rogers fights for American ideals as one of the world’s mightiest heroes and the leader of the Avengers.</p>
                                     <a href="#" class="btn btn-block">View profile</a>
@@ -81,15 +80,41 @@
                                     <a href="#" class="btn btn-block">View profile</a>
                                 </div>
                             </div>
+
+                            <div class="card">
+                                <img src="assets/images/blackWidow.jpeg" class="card-img-top">
+                                <div class="card-body">
+                                    <h3 class="card-title">Black Widow</h3>
+                                    <p class="card-text">
+                                        Despite super spy Natasha Romanoff’s checkered past, she’s become one of S.H.I.E.L.D.’s most deadly assassins and a frequent member of the Avengers.</p>
+                                    <a href="#" class="btn btn-block">View profile</a> 
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <img src="assets/images/hawkeye.jpeg" class="card-img-top">
+                                <div class="card-body">
+                                    <h3 class="card-title">Hawkeye</h3>
+                                    <p class="card-text">
+                                        A master marksman and longtime friend of Black Widow, Clint Barton serves as the Avengers’ amazing archer.</p>
+                                    <a href="#" class="btn btn-block">View profile</a> 
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Left side container -->
+            <div class="col-md-2" id="recentSearches">
+                <h4>Search History:</h4><br>
+                <button id="clearHist" class="btn btn-block">Clear Searches</button>
+            </div>
         </div>
     </div>
-
-
     
+</div>
+<!-- <img src="assets/images/shieldBottom.jpg" id="footer"> -->
     <script src="assets/javascript/app.js"></script>
 
 </body>
