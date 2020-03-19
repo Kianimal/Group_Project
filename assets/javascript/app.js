@@ -1,5 +1,4 @@
 //Firebase config
-
 var firebaseConfig = {
     apiKey: "AIzaSyBbGk5Fx5bNpLW3xAg_p4NBtjkr-oA-1tY",
     authDomain: "fir-tutorialproject-36349.firebaseapp.com",
@@ -14,48 +13,41 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
-//Private Key obfuscation
-function getMarvelData(){
-    database.ref().on("value", function(snapshot){
-        callMarvelApi(marvelUrl,snapshot.val().prk);
-    });
-};
-
 //Public API keys for Marvel and OMDB
-var PUBLIC_KEY = "f8e858e24706311bfa54317c9a8f43c2";
+var pubKEY = "f8e858e24706311bfa54317c9a8f43c2";
 var movieKEY = "4a96b10d";
 
 //Search value
 var searchString = "iron+man";
 
-//Marvel URL. Hard coded, will need a more dynamic solution.
-var marvelUrl = 'https://gateway.marvel.com/v1/public/characters?name=' + searchString;
+//Marvel character search URL
+var marvelUrl = 'https://gateway.marvel.com/v1/public/characters?id=' + searchString;
+
+//Private Key obfuscation
+function getMarvelData(){
+    database.ref().once("value", function(snapshot){
+        callMarvelApi(marvelUrl,snapshot.val().prk);
+    });
+};
 
 //Display data
-var thumbnail_char; //thumbnail image of the character
-var thumbnail_1;    //thumbnail image for the first comic
-var thumbnail_2;    //thumbnail image for the second comic
-var thumbnail_3;    //thumbnail image for the third comic
-var charBio; //text description of the character
-
-function callMarvelApi(url,PRIV_KEY) {
+function callMarvelApi(url,privKEY) {
 
     // Used to create an encrypted hash to send to Marvel as required by their API
     var ts = new Date().getTime();
-    var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();
+    var hash = CryptoJS.MD5(ts + privKEY + pubKEY).toString();
 
     // Same as .ajax call but with more predefined parameters.
     $.getJSON(url, {
         ts: ts,
-        apikey: PUBLIC_KEY,
+        apikey: pubKEY,
         hash: hash
         })
         .done(function(data) {
         // Once the call completes we look at the whole dump to see what we want.
             console.log(data);
-            getCharBio(data);
             getComicImg(data);
-            getThumbnail(data);
+            appendCharBio(data);
         })
         .fail(function(err){
         // Error codes are listed on the site but they're pretty self-explanatory
@@ -64,26 +56,29 @@ function callMarvelApi(url,PRIV_KEY) {
 };
 
 // Gets the thumbnails for characters and comics.
-function getThumbnail(data){
+function getMarvelThumbnail(data){
     var img = data.data.results[0].thumbnail.path + "." + data.data.results[0].thumbnail.extension;
-    console.log(img);
     return img;
 };
 
 // Gets the character bio data.
-function getCharBio(data){
+function getMarvelCharBio(data){
     var info = data.data.results[0].description;
-    console.log(info);
     return info;
 };
 
-// Will display the character data. Needs append functionality, but we will work on that together.
-// function displayCharData(){
-//     thumbnail_char = $("<img>");
-//     thumbnail_char.attr("src",getThumbnail(data));
-//     charBio = $("<p>");
-//     charBio.text(getCharBio(data));
-// }
+// Append character image
+function appendCharBio(data){
+    var charBio = document.getElementById("pBio");
+    var bioText = getMarvelCharBio(data);
+    $(charBio).text(bioText);
+    if (bioText == ""){
+        backupBioData(data);
+    }
+    console.log(bioText);
+    var thumbnail_char = document.getElementById("bioPic");
+    $(thumbnail_char).attr("src",getMarvelThumbnail(data));
+};
 
 // Gets comic thumbnail images
 function getComicImg(data){
@@ -92,11 +87,10 @@ function getComicImg(data){
                         data.data.results[0].thumbnail.extension);
 };
 
-
 //OMDB functionality. Should be cleaned up a little, but that's less important for now.
 function getMovies(){
 
-    var movieUrl = 'http://www.omdbapi.com/?s=' + searchString + '&apikey=';
+    var movieUrl = 'https://www.omdbapi.com/?s=' + searchString + '&apikey=';
 
     $.ajax({
         url: movieUrl + movieKEY,
@@ -105,7 +99,7 @@ function getMovies(){
         var arr = searchString.split("+");
 
         for(i=0;i<arr.length;i++){
-            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].substring(1);
+            arr[i] = arr[i].charAt(0) + arr[i].substring(1);
         };
 
         searchString = arr.join(" ");
@@ -121,6 +115,29 @@ function getMovies(){
     });
 };
 
-getMovies();
-getMarvelData();
-// getMarvel(marvelUrl);
+// Many characters have blank description info, for some reason.
+// In this case, the marvel wiki link is given instead
+// with an explanation that the Marvel API does not provide this data.
+function backupBioData(data){
+    var bioText = data.data.results[0].urls[1].url.split("?");
+    var bioMsg = "Whoops! Sorry! Sometimes the Marvel API is lacking in data. " + 
+                "Looks like this is one of those times. Here is a link to this character's Marvel page.";
+    var bioLink = $("<a>");
+    bioLink.attr("href",bioText[0] + "?");
+    bioLink.attr("target","new");
+    bioLink.text("Click here for the wiki page.");
+    $("#pBio").text(bioMsg);
+    $("#pBio").append('<br/>');
+    $("#pBio").append(bioLink);
+};
+
+// Search functionality on search button click
+$("#btnSub").on("click", function(event){
+    event.preventDefault();
+    searchString = document.getElementById("searchBar").value;
+    console.log(searchString);
+    marvelUrl = 'https://gateway.marvel.com/v1/public/characters?name=' + searchString;
+    console.log(marvelUrl);
+    getMarvelData();
+    getMovies();
+});
