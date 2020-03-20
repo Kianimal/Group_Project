@@ -182,9 +182,11 @@ function updateRecents () {
     var newArray = JSON.parse(sessionStorage.getItem("searches"));
     console.log(newArray);
     $("#searchesAdded").empty();
-    for (var i = 0; i < newArray.length; i++) {
-        $("#searchesAdded").append(newArray[i] + "<br>");
-    }
+    if(newArray != null){
+        for (var i = 0; i < newArray.length; i++) {
+            $("#searchesAdded").append(newArray[i] + "<br>");
+        };
+    };
 }
 
 function clearRecents () { 
