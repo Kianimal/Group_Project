@@ -141,3 +141,41 @@ $("#btnSub").on("click", function(event){
     getMarvelData();
     getMovies();
 });
+
+var searchArray = [];
+var searchTerm = "";
+
+$(document).ready(function () {
+    updateRecents();
+})
+
+$(document).on("click", "#btnSub", function () {
+    event.preventDefault();
+    addInput();    
+    updateRecents();
+    return false;
+})
+
+$(document).on("click", "#clearHist", function () {
+    clearRecents();
+})
+
+function addInput () {
+    searchTerm = $("#searchBar").val().trim();
+    searchArray.unshift(searchTerm); 
+    sessionStorage.setItem("searches", JSON.stringify(searchArray));
+}
+
+function updateRecents () {
+    var newArray = JSON.parse(sessionStorage.getItem("searches"));
+    console.log(newArray);
+    $("#searchesAdded").empty();
+    for (var i = 0; i < newArray.length; i++) {
+        $("#searchesAdded").append(newArray[i] + "<br>");
+    }
+}
+
+function clearRecents () { 
+    $("#searchesAdded").empty();
+    sessionStorage.clear();
+}
