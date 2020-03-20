@@ -34,10 +34,7 @@
     margin-left: 30px;
     text-align: justify;
 }
-/* 
-#bio p {
-    width: 50%;
-} */
+
 
 #recentSearches #clearHist {
     /* margin-top: 0px; */
@@ -56,7 +53,12 @@
 #recentSearches h4 {
     padding-top: 0.5vw;
     font-family: 'Roboto', sans-serif;
+    font-size: 1.7vw;
     margin-bottom: 30px;
+}
+
+#searchesAdded {
+    font-size: 1.4vw;
 }
 
 #recentSearches.col-md-2 {
