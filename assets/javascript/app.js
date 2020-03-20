@@ -153,7 +153,17 @@ $("#btnSub").on("click", function(event){
     getMarvelData();
     getMovies();
 });
-
+$("#searchBar").keypress(function(e){
+    if(e.which==13){
+        event.preventDefault();
+        searchString = document.getElementById("searchBar").value;
+        console.log(searchString);
+        marvelUrl = 'https://gateway.marvel.com/v1/public/characters?name=' + searchString;
+        console.log(marvelUrl);
+        getMarvelData();
+        getMovies();
+    }
+});
 var searchArray = [];
 var searchTerm = "";
 
