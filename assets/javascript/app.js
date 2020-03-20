@@ -17,11 +17,23 @@ var database = firebase.database();
 var pubKEY = "f8e858e24706311bfa54317c9a8f43c2";
 var movieKEY = "4a96b10d";
 
+// List of heroes to randomly display on page load
+var avengersList = ["iron+man",
+                    "captain+america",
+                    "thor",
+                    "hulk",
+                    "scarlet+witch",
+                    "black+widow",
+                    "vision"];
+
+// Randomly selected initial display hero
+var selected = avengersList[Math.floor(Math.random()*avengersList.length)];
+
 //Search value
-var searchString = "iron+man";
+var searchString = selected;
 
 //Marvel character search URL
-var marvelUrl = 'https://gateway.marvel.com/v1/public/characters?id=' + searchString;
+var marvelUrl = 'https://gateway.marvel.com/v1/public/characters?name=' + searchString;
 
 //Private Key obfuscation
 function getMarvelData(){
@@ -178,4 +190,6 @@ function updateRecents () {
 function clearRecents () { 
     $("#searchesAdded").empty();
     sessionStorage.clear();
-}
+};
+
+getMarvelData(marvelUrl);
