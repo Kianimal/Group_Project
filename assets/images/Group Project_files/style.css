@@ -21,10 +21,10 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    min-height: 180px;
 }  
 
 #bio p, #movies p, #comics p {
+    margin-left: 30px;
     text-align: justify;
 }
 
@@ -34,11 +34,6 @@ div#recentSearches.col-md-2 {
     margin-left: -1vw;
 }
 
-#searchesAdded {
-    overflow: scroll;
-}
-
-
 #name {
     text-align: right;
     color: #0F4E9E;
@@ -47,12 +42,11 @@ div#recentSearches.col-md-2 {
 
 #recentSearches #clearHist {
     position: absolute;
+    right: 0.1vw;
     bottom: 1vw;
-    right: 1.5vw; 
-    width: 80%;
+    width: 100%;
     background-color: white;
     color: #AA2629;
-    margin-top: 2vw;
 }
 
 .btn.btn-block {
@@ -225,20 +219,12 @@ form:hover input{
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: .1em;
-}   
+}
+
+h1 {
+    font-size: 3.8vw;
+}
 
 p, div, a, table, span, input {
     font-family: 'Roboto', sans-serif;
-}
-
-
-
-@media (max-width: 768px) { 
-    #searchesAdded {
-        height: 100px;
-    }
-
-    #recentSearches #clearHist {
-        right: 9vw;
-    }
 }

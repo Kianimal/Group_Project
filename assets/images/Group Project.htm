@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!-- saved from url=(0090)file:///Users/baileewallis/Documents/Bootcamp/Homework/ProjectOne/Group_Project/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Project</title>
+    <link href="./Group Project_files/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./Group Project_files/reset.css">
+    <link rel="stylesheet" href="./Group Project_files/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <!-- <link rel="stylesheet" type="text/css" href="assets\CSS\base.css"> -->
+    <link rel="stylesheet" type="text/css" href="./Group Project_files/style.css">
+    
+</head>
+<body>
+
+    <script src="./Group Project_files/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+    </script>
+    <script src="./Group Project_files/bootstrap.bundle.min.js"></script>
+    <script src="./Group Project_files/firebase-app.js"></script>
+    <script src="./Group Project_files/firebase-database.js"></script>
+    <script src="./Group Project_files/crypto-js.min.js"></script>
+
+    <div>
+        <nav class="navbar navbar-brand">
+            <a class="navbar-brand" href="https://kianimal.github.io/Group_Project/">
+                <img src="./Group Project_files/shield.png" alt="" id="headerLogo">
+            </a>
+            <form id="heroSearch" action="file:///Users/baileewallis/Documents/Bootcamp/Homework/ProjectOne/Group_Project/index.html">
+                <input type="search" placeholder="Search for your favorite super hero..." id="searchBar">
+                <i id="btnSub" class="fa fa-search"></i>
+            </form>
+        </nav>
+    </div>
+
+<div class="container-fluid" id="wrapper landingPage">
+    <!-- <div class="container" id="landingPage"> -->
+        <div class="row">
+            <div class="col-md-10">
+                <!-- center about container -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 heading">
+                            <h1>A comprehensive guide to the Marvel universe</h1>
+                            <h1 class="muted">
+                                movies | comics | characters - all in one place</h1>
+                        </div>
+                    </div>
+<!-- center container with character cards, about, links to their full profile -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img id="bioPic" class="charImage" src="./Group Project_files/50fecad1f395b.jpg">
+                            <span id="name">
+                                <h1>Iron Man</h1>
+                            </span>
+                            <span id="bio">
+                                <h4>About:</h4>
+                                <p id="pBio">Whoops! Sorry! Sometimes the Marvel API is lacking in data. Looks like this is one of those times. Here is a link to this character's Marvel page.<br><a href="http://marvel.com/universe/Black_Widow_(Natasha_Romanova)?" target="new">Click here for the wiki page.</a></p>
+                            </span>
+                            <h4>Movies featured in:</h4>
+                            <span id="moviePosters" class="main-container">
+                            <!-- cards with their release dates -->
+                                <img src="./Group Project_files/ironman1.jpg">
+                                <img src="./Group Project_files/ironman2.jpg">
+                                <img src="./Group Project_files/ironman3.jpg">
+                                <img src="./Group Project_files/ironman4.jpg">
+                                <img src="./Group Project_files/ironman5.jpg">
+                            </span>
+                        </div>
+                    </div>  
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span id="comics">
+                                <h4>Appearances in Comics:</h4>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+          
+        
+                <div class="main-container">
+                    <h5>Your Avengers</h5>
+                    <div class="card">
+                        <img src="./Group Project_files/captAmer.jpeg" class="card-img-top">
+                        <div class="card-body sliding">
+                            <h3 class="card-title">Captain America</h3>
+                            <p class="card-text">Recipient of the Super-Soldier serum, World War II hero Steve Rogers fights for American ideals as one of the world’s mightiest heroes and the leader of the Avengers.</p>
+                                <a href="file:///Users/baileewallis/Documents/Bootcamp/Homework/ProjectOne/Group_Project/index.html#" class="btn btn-block">View profile</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="./Group Project_files/ironman.jpeg" class="card-img-top">
+                        <div class="card-body">
+                            <h3 class="card-title">Iron Man</h3>
+                            <p class="card-text">Genius. Billionaire. Playboy. Philanthropist. Tony Stark's confidence is only matched by his high-flying abilities as the hero called Iron Man.</p>
+                            <a href="file:///Users/baileewallis/Documents/Bootcamp/Homework/ProjectOne/Group_Project/index.html#" class="btn btn-block">View profile</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="./Group Project_files/hulk.jpeg" class="card-img-top">
+                        <div class="card-body">
+                            <h3 class="card-title">Incredible Hulk</h3>
+                            <p class="card-text">
+                                Dr. Bruce Banner lives a life caught between the soft-spoken scientist he’s always been and the uncontrollable green monster powered by his rage.</p>
+                            <a href="file:///Users/baileewallis/Documents/Bootcamp/Homework/ProjectOne/Group_Project/index.html#" class="btn btn-block">View profile</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="./Group Project_files/blackWidow.jpeg" class="card-img-top">
+                        <div class="card-body">
+                            <h3 class="card-title">Black Widow</h3>
+                                <p class="card-text">
+                                    Despite super spy Natasha Romanoff’s checkered past, she’s become one of S.H.I.E.L.D.’s most deadly assassins and a frequent member of the Avengers.</p>
+                                <a href="file:///Users/baileewallis/Documents/Bootcamp/Homework/ProjectOne/Group_Project/index.html#" class="btn btn-block">View profile</a> 
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="./Group Project_files/hawkeye.jpeg" class="card-img-top">
+                        <div class="card-body">
+                            <h3 class="card-title">Hawkeye</h3>
+                            <p class="card-text">
+                                A master marksman and longtime friend of Black Widow, Clint Barton serves as the Avengers’ amazing archer.</p>
+                            <a href="file:///Users/baileewallis/Documents/Bootcamp/Homework/ProjectOne/Group_Project/index.html#" class="btn btn-block">View profile</a> 
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="./Group Project_files/scarWitch.jpeg" class="card-img-top">
+                        <div class="card-body">
+                            <h3 class="card-title">Scarlet Witch</h3>
+                            <p class="card-text">
+                                Notably powerful, Wanda Maximoff has fought both against and with the Avengers, attempting to hone her abilities and do what she believes is right to help the world.</p>
+                            <a href="file:///Users/baileewallis/Documents/Bootcamp/Homework/ProjectOne/Group_Project/index.html#" class="btn btn-block">View profile</a> 
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="./Group Project_files/vision.jpeg" class="card-img-top">
+                        <div class="card-body">
+                            <h3 class="card-title">Vision</h3>
+                            <p class="card-text">
+                                The android called Vision defies physics and fights as an Avenger with the power of density manipulation and his flawless computer brain.</p>
+                            <a href="file:///Users/baileewallis/Documents/Bootcamp/Homework/ProjectOne/Group_Project/index.html#" class="btn btn-block">View profile</a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left side container -->
+            <div class="col-md-2" id="recentSearches">
+                <h4>Search History:</h4><br>
+                <div id="searchesAdded"></div>
+                <div class="text-center">
+                    <button id="clearHist" class="btn btn-block m-0">Clear Searches</button>
+                </div>
+            </div>
+        </div>
+    <!-- </div>       -->
+</div>
+<!-- <img src="assets/images/shieldBottom.jpg" id="footer"> -->
+    <script src="./Group Project_files/app.js"></script>
+
+
+</body></html>
