@@ -167,6 +167,11 @@ img#footer:hover {
     margin-right: 0px;
 }
 
+#pBio {
+    word-wrap: normal;
+    white-space: normal;
+}
+
 /*css for search bar*/
 form{
     
