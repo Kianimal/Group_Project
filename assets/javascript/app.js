@@ -14,17 +14,14 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
 //Public API keys for Marvel and OMDB
-var pubKEY = "f8e858e24706311bfa54317c9a8f43c2";
+var pubKEY = "e6cffbf3e61eea01863ddd25fdcffb08";
 var movieKEY = "4a96b10d";
 
 // List of heroes to randomly display on page load
 var avengersList = ["iron+man",
                     "captain+america",
                     "thor",
-                    "hulk",
-                    "scarlet+witch",
-                    "black+widow",
-                    "vision"];
+                    "hulk"];
 
 var thumbnails = [];
 var comicUrls = [];
@@ -77,7 +74,7 @@ function callBioApi(url,privKEY) {
         .fail(function(err){
         // Error codes are listed on the site but they're pretty self-explanatory
         console.log(err);
-        console.log("error calling characterApi");
+        console.log("Error calling characterApi");
         });
 };
 
@@ -101,7 +98,7 @@ function callComicsApi(url,privKEY) {
         .fail(function(err){
         // Error codes are listed on the site but they're pretty self-explanatory
         console.log(err);
-        console.log("error calling comicsApi");
+        console.log("Error calling comicsApi");
         });
 };
 
@@ -150,7 +147,7 @@ function getComicUrls(data){
 
 //OMDB functionality. Should be cleaned up a little, but that's less important for now.
 function getMovies(){
-
+    convertSearchString();
     var movieUrl = 'https://www.omdbapi.com/?s=' + searchString + '&apikey=';
 
     $.ajax({
@@ -172,11 +169,8 @@ function getMovies(){
         for(i=0;i<response.Search.length;i++){
             var title = response.Search[i].Title;
             var posterURL = response.Search[i].Poster;
-            
             if(j<10){
                 if(title.includes(searchString)){
-                    console.log(title);
-                    console.log(posterURL)
                     j++;
 
                     // Creating an element to hold the image
@@ -206,13 +200,18 @@ function backupBioData(data){
     $("#pBio").append(bioLink);
 };
 
+function convertSearchString(){
+    searchString = searchString.split(" ").join("+");
+    console.log("Converted search string: " + searchString);
+}
+
 // Search functionality on search button click
 $("#btnSub").on("click", function(event){
     event.preventDefault();
     searchString = document.getElementById("searchBar").value;
-    console.log(searchString);
+    convertSearchString();
     marvelUrl = 'https://gateway.marvel.com/v1/public/characters?name=' + searchString;
-    console.log(marvelUrl);
+    console.log("Marvel URL called: " + marvelUrl);
     callMarvelBio(marvelUrl);
     getMovies();
 });
@@ -220,9 +219,8 @@ $("#searchBar").keypress(function(e){
     if(e.which==13){
         event.preventDefault();
         searchString = document.getElementById("searchBar").value;
-        console.log(searchString);
         marvelUrl = 'https://gateway.marvel.com/v1/public/characters?name=' + searchString;
-        console.log(marvelUrl);
+        console.log("Marvel URL called: " + marvelUrl);
         callMarvelBio(marvelUrl);
         getMovies();
     }
@@ -264,7 +262,6 @@ function addInput () {
 
 function updateRecents () {
     var newArray = JSON.parse(sessionStorage.getItem("searches"));
-    console.log(newArray);
     $("#searchesAdded").empty();
     if(newArray != null){
         for (var i = 0; i < newArray.length; i++) {
