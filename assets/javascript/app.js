@@ -113,8 +113,15 @@ function appendCharBio(data){
     $(charBio).text(bioText);
     if (bioText == ""){
         backupBioData(data);
+    } else {
+        var bioLink = $("<a>");
+        bioLink.attr("href",bioText[0] + "?");
+        bioLink.attr("target","new");
+        bioLink.text("Click here for the wiki page.");
+        $("#pBio").append('<br/>');
+        $("#pBio").append(bioLink);
     }
-    console.log(bioText);
+
     var thumbnail_char = document.getElementById("bioPic");
     $(thumbnail_char).attr("src",data.data.results[0].thumbnail.path + "." + 
                                 data.data.results[0].thumbnail.extension);
@@ -125,7 +132,6 @@ function appendComics(data){
         var comicLink = $("<a>");
         comicLink.attr("href",data.data.results[0].urls[0].url);
         comicLink.attr("target","new");
-        // comicLink.text(data.data.results[0].title);
 
         var comicDiv = $("<div>");
         $(comicDiv).attr("class","comicImgContainer");
@@ -138,22 +144,21 @@ function appendComics(data){
         $("#comicDisplayArea").append(comicLink);
         comicLink.append(comicDiv);
         comicDiv.append(comicImg);
-        // console.log(comicLink);
 }
 
 // Gets comic thumbnail images
 function getComicUrls(data){
     for(i=0;i<9;i++){
         comicUrls[i] = data.data.results[0].comics.items[i].resourceURI;
+        comicUrls[i] = comicUrls[i].split(":");
+        comicUrls[i] = comicUrls[i].join("s:");
     }
-    console.log(comicUrls);
 };
 
 //OMDB functionality. Should be cleaned up a little, but that's less important for now.
 function getMovies(){
 
     var movieUrl = 'https://www.omdbapi.com/?s=' + searchString + '&apikey=';
-    console.log(movieUrl);
 
     $.ajax({
         url: movieUrl + movieKEY,
@@ -166,7 +171,6 @@ function getMovies(){
         };
 
         searchString = arr.join(" ");
-        console.log("Search string: " + searchString);
 
         //Checks against titles to make sure they are relevant, hopefully.
         //Prints 3 relevant titles to the console.
@@ -198,7 +202,7 @@ function getMovies(){
 // with an explanation that the Marvel API does not provide this data.
 function backupBioData(data){
     var bioText = data.data.results[0].urls[1].url.split("?");
-    var bioMsg = "Whoops! Sorry! Sometimes the Marvel API is lacking in data. " + 
+    var bioMsg = "Whoops! Sorry, sometimes the Marvel API is lacking in data. " + 
                 "Looks like this is one of those times. Here is a link to this character's Marvel page.";
     var bioLink = $("<a>");
     bioLink.attr("href",bioText[0] + "?");
