@@ -93,6 +93,7 @@ nav {
     position: relative;
     top: 0vw;
     border-top: none;
+    width: 100%;
  }
 
 nav.navbar.navbar-brand {
@@ -181,7 +182,7 @@ img:hover {
 }
 
 /*css for search bar*/
-form{    
+form{
     position: absolute;
     width: 60px;
     height: 60px;
@@ -229,7 +230,7 @@ i.fa{
 }
 
 form:hover{
-    width: 34vw;
+    width: 20vw;
     cursor: pointer;
 }
 
