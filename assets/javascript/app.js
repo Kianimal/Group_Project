@@ -113,13 +113,6 @@ function appendCharBio(data){
     $(charBio).text(bioText);
     if (bioText == ""){
         backupBioData(data);
-    } else {
-        var bioLink = $("<a>");
-        bioLink.attr("href",bioText[0] + "?");
-        bioLink.attr("target","new");
-        bioLink.text("Click here for the wiki page.");
-        $("#pBio").append('<br/>');
-        $("#pBio").append(bioLink);
     }
 
     var thumbnail_char = document.getElementById("bioPic");
