@@ -35,11 +35,11 @@ div#recentSearches.col-md-2 {
 }
 
 #searchesAdded {
-    overflow: scroll;
+    overflow: auto;
 }
 
 
-#name {
+.name {
     text-align: right;
     color: #0F4E9E;
     margin-bottom: 0px;
@@ -231,7 +231,16 @@ p, div, a, table, span, input {
     font-family: 'Roboto', sans-serif;
 }
 
+.comicImgContainer{
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
 
+.comicImg{
+    width: 5.9vw;
+    min-width: 5vw;
+}
 
 @media (max-width: 768px) { 
     #searchesAdded {

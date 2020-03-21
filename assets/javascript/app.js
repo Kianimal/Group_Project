@@ -26,6 +26,9 @@ var avengersList = ["iron+man",
                     "black+widow",
                     "vision"];
 
+var thumbnails = [];
+var comicUrls = [];
+
 // Randomly selected initial display hero
 var selected = avengersList[Math.floor(Math.random()*avengersList.length)];
 
@@ -36,14 +39,23 @@ var searchString = selected;
 var marvelUrl = 'https://gateway.marvel.com/v1/public/characters?name=' + searchString;
 
 //Private Key obfuscation
-function getMarvelData(){
+function callMarvelBio(marvelUrl){
     database.ref().once("value", function(snapshot){
-        callMarvelApi(marvelUrl,snapshot.val().prk);
+        callBioApi(marvelUrl,snapshot.val().prk);
+    });
+};
+
+function callMarvelComics(comicUrls){
+    database.ref().once("value", function(snapshot){
+        $("#comicDisplayArea").empty();
+        for(i=0;i<comicUrls.length;i++){
+            callComicsApi(comicUrls[i],snapshot.val().prk);
+        }
     });
 };
 
 //Display data
-function callMarvelApi(url,privKEY) {
+function callBioApi(url,privKEY) {
 
     // Used to create an encrypted hash to send to Marvel as required by their API
     var ts = new Date().getTime();
@@ -58,51 +70,90 @@ function callMarvelApi(url,privKEY) {
         .done(function(data) {
         // Once the call completes we look at the whole dump to see what we want.
             console.log(data);
-            getComicImg(data);
             appendCharBio(data);
+            getComicUrls(data);
+            callMarvelComics(comicUrls);
         })
         .fail(function(err){
         // Error codes are listed on the site but they're pretty self-explanatory
         console.log(err);
+        console.log("error calling characterApi");
         });
 };
 
-// Gets the thumbnails for characters and comics.
-function getMarvelThumbnail(data){
-    var img = data.data.results[0].thumbnail.path + "." + data.data.results[0].thumbnail.extension;
-    return img;
+function callComicsApi(url,privKEY) {
+
+    // Used to create an encrypted hash to send to Marvel as required by their API
+    var ts = new Date().getTime();
+    var hash = CryptoJS.MD5(ts + privKEY + pubKEY).toString();
+
+    // Same as .ajax call but with more predefined parameters.
+    $.getJSON(url, {
+        ts: ts,
+        apikey: pubKEY,
+        hash: hash
+        })
+        .done(function(data) {
+        // Once the call completes we look at the whole dump to see what we want.
+            console.log(data);
+            appendComics(data);
+        })
+        .fail(function(err){
+        // Error codes are listed on the site but they're pretty self-explanatory
+        console.log(err);
+        console.log("error calling comicsApi");
+        });
 };
 
-// Gets the character bio data.
-function getMarvelCharBio(data){
-    var info = data.data.results[0].description;
-    return info;
-};
-
-// Append character image
+// Append character biography
 function appendCharBio(data){
     var charBio = document.getElementById("pBio");
-    var bioText = getMarvelCharBio(data);
+    var nameText = data.data.results[0].name;
+    var bioText = data.data.results[0].description;
     $(charBio).text(bioText);
     if (bioText == ""){
         backupBioData(data);
     }
     console.log(bioText);
     var thumbnail_char = document.getElementById("bioPic");
-    $(thumbnail_char).attr("src",getMarvelThumbnail(data));
+    $(thumbnail_char).attr("src",data.data.results[0].thumbnail.path + "." + 
+                                data.data.results[0].thumbnail.extension);
+    $(".name").text(nameText);
 };
 
-// Gets comic thumbnail images
-function getComicImg(data){
-    thumbnail_1 = $("<img>");
-    thumbnail_1.attr("src",data.data.results[0].thumbnail.path + "." + 
+function appendComics(data){
+        var comicLink = $("<a>");
+        comicLink.attr("href",data.data.results[0].urls[0].url);
+        comicLink.attr("target","new");
+        // comicLink.text(data.data.results[0].title);
+
+        var comicDiv = $("<div>");
+        $(comicDiv).attr("class","comicImgContainer");
+
+        var comicImg = $("<img>");
+        $(comicImg).attr("src",data.data.results[0].thumbnail.path + "." +
                         data.data.results[0].thumbnail.extension);
+        $(comicImg).attr("class","comicImg")
+
+        $("#comicDisplayArea").append(comicLink);
+        comicLink.append(comicDiv);
+        comicDiv.append(comicImg);
+        // console.log(comicLink);
+}
+
+// Gets comic thumbnail images
+function getComicUrls(data){
+    for(i=0;i<9;i++){
+        comicUrls[i] = data.data.results[0].comics.items[i].resourceURI;
+    }
+    console.log(comicUrls);
 };
 
 //OMDB functionality. Should be cleaned up a little, but that's less important for now.
 function getMovies(){
 
     var movieUrl = 'https://www.omdbapi.com/?s=' + searchString + '&apikey=';
+    console.log(movieUrl);
 
     $.ajax({
         url: movieUrl + movieKEY,
@@ -111,17 +162,22 @@ function getMovies(){
         var arr = searchString.split("+");
 
         for(i=0;i<arr.length;i++){
-            arr[i] = arr[i].charAt(0) + arr[i].substring(1);
+            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].substring(1);
         };
 
         searchString = arr.join(" ");
         console.log("Search string: " + searchString);
 
         //Checks against titles to make sure they are relevant, hopefully.
+        //Prints 3 relevant titles to the console.
+        var j=0;
         for(i=0;i<response.Search.length;i++){
             var title = response.Search[i].Title;
-            if(title.includes(searchString)){
-                console.log(title);
+            if(j<5){
+                if(title.includes(searchString)){
+                    console.log(title);
+                    j++;
+                }
             }
         }
     });
@@ -150,7 +206,7 @@ $("#btnSub").on("click", function(event){
     console.log(searchString);
     marvelUrl = 'https://gateway.marvel.com/v1/public/characters?name=' + searchString;
     console.log(marvelUrl);
-    getMarvelData();
+    callMarvelBio(marvelUrl);
     getMovies();
 });
 $("#searchBar").keypress(function(e){
@@ -160,7 +216,7 @@ $("#searchBar").keypress(function(e){
         console.log(searchString);
         marvelUrl = 'https://gateway.marvel.com/v1/public/characters?name=' + searchString;
         console.log(marvelUrl);
-        getMarvelData();
+        callMarvelBio(marvelUrl);
         getMovies();
     }
 });
@@ -175,7 +231,18 @@ $(document).on("click", "#btnSub", function () {
     event.preventDefault();
     addInput();    
     updateRecents();
+    document.getElementById("heroSearch").reset();
     return false;
+})
+
+$(document).on("keypress", "#searchBar", function(e) {
+    if(e.which==13){
+        e.preventDefault();
+        addInput();    
+        updateRecents();
+        document.getElementById("heroSearch").reset();
+        return false;
+    }
 })
 
 $(document).on("click", "#clearHist", function () {
@@ -204,4 +271,5 @@ function clearRecents () {
     sessionStorage.clear();
 };
 
-getMarvelData(marvelUrl);
+callMarvelBio(marvelUrl);
+getMovies();
