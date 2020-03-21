@@ -171,12 +171,22 @@ function getMovies(){
         //Checks against titles to make sure they are relevant, hopefully.
         //Prints 3 relevant titles to the console.
         var j=0;
+        $("#moviePosters").empty();
         for(i=0;i<response.Search.length;i++){
             var title = response.Search[i].Title;
-            if(j<5){
+            var posterURL = response.Search[i].Poster;
+            
+            if(j<10){
                 if(title.includes(searchString)){
                     console.log(title);
+                    console.log(posterURL)
                     j++;
+
+                    // Creating an element to hold the image
+                    var image = $("<img>").attr("src", posterURL);
+
+                    // Putting the entire movie above the previous movies
+                    $("#moviePosters").append(image);
                 }
             }
         }
